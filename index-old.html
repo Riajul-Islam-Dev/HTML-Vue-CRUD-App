@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <button @click="changeMessage">Click me</button><br>
+        <button @click="goToPage">CRUD</button>
+    </div>
+
+    <script>
+        const { ref } = Vue;
+        const app = Vue.createApp({
+            setup() {
+                const message = ref("Hi");
+                const changeMessage = () => {
+                    message.value = "Bye";
+                };
+                const goToPage = () => {
+                    window.location.href = "crud.html";
+                };
+                return { message, changeMessage, goToPage };
+            },
+        });
+        app.mount("#app");
+    </script>
+</body>
+
+</html>

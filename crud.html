@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue CRUD App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="newItem" @keyup.enter="addItem">
+        <ul>
+            <li v-for="(item, index) in items" :key="index">
+                {{ item }}
+                <button @click="deleteItem(index)">Delete</button>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const { ref } = Vue;
+        const app = Vue.createApp({
+            setup() {
+                const newItem = ref("");
+                const items = ref([]);
+
+                const addItem = () => {
+                    items.value.push(newItem.value);
+                    newItem.value = "";
+                };
+
+                const deleteItem = (index) => {
+                    items.value.splice(index, 1);
+                };
+
+                return { newItem, items, addItem, deleteItem };
+            },
+        });
+        app.mount("#app");
+    </script>
+</body>
+
+</html>
